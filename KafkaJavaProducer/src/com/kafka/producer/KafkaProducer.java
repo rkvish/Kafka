@@ -11,6 +11,8 @@ import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
 /*
+ * This is plain java class publishing fake messages to Kafka Topic.
+ * 
  * Usage : java -cp KafkaProducer-0.0.1-SNAPSHOT-jar-with-dependencies.jar com.kafka.producer.KafkaProducer tweets 10 localhost:9092 0
  */
 
