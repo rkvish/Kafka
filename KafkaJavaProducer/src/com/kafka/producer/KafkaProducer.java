@@ -30,12 +30,6 @@ public class KafkaProducer {
 	String broker = args[2];
 	String ack = args[3];
 
-	// Print the arguments
-	System.out.println(" topic - " + topic);
-	System.out.println(" sleepSec - " + sleepSec);
-	System.out.println(" zk --" + broker);
-	System.out.println(" ack - " + ack);
-
 	// Get random number
 	Random rn = new Random();
 	int rnum = 5000;
@@ -49,8 +43,7 @@ public class KafkaProducer {
 	props.put("request.required.acks", ack);
 
 	ProducerConfig config = new ProducerConfig(props);
-	Producer<String, String> producer = new Producer<String, String>(
-			config);
+	Producer<String, String> producer = new Producer<String, String>(config);
 
 	while (true) {
 
@@ -61,13 +54,10 @@ public class KafkaProducer {
 			  .append(" generated " + rn.nextInt(rnum))
 			  .append(" at "+dateFormat.format(new Date()));
 
-			KeyedMessage<String, String> msg = new KeyedMessage<String, String>(
-					topic, buffer.toString());
-			producer.send(msg);
-			buffer.setLength(0);
-
-			Thread.sleep(sleepSec);
-
+		KeyedMessage<String, String> msg = new KeyedMessage<String, String>(topic, buffer.toString());
+		producer.send(msg);
+		
+		Thread.sleep(sleepSec);
 		}
 	} catch (Exception e) {
 		e.printStackTrace();
